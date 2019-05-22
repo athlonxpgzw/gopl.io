@@ -1,0 +1,47 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Check	check.go	/^func (b binary) Check(vars map[Var]bool) error {$/;"	f
+Check	check.go	/^func (c call) Check(vars map[Var]bool) error {$/;"	f
+Check	check.go	/^func (literal) Check(vars map[Var]bool) error {$/;"	f
+Check	check.go	/^func (u unary) Check(vars map[Var]bool) error {$/;"	f
+Check	check.go	/^func (v Var) Check(vars map[Var]bool) error {$/;"	f
+Env	eval.go	/^type Env map[Var]float64$/;"	t
+Eval	eval.go	/^func (b binary) Eval(env Env) float64 {$/;"	f
+Eval	eval.go	/^func (c call) Eval(env Env) float64 {$/;"	f
+Eval	eval.go	/^func (l literal) Eval(_ Env) float64 {$/;"	f
+Eval	eval.go	/^func (u unary) Eval(env Env) float64 {$/;"	f
+Eval	eval.go	/^func (v Var) Eval(env Env) float64 {$/;"	f
+Expr	ast.go	/^type Expr interface {$/;"	t
+Format	print.go	/^func Format(e Expr) string {$/;"	f
+Parse	parse.go	/^func Parse(input string) (_ Expr, err error) {$/;"	f
+TestCoverage	coverage_test.go	/^func TestCoverage(t *testing.T) {$/;"	f
+TestErrors	eval_test.go	/^func TestErrors(t *testing.T) {$/;"	f
+TestEval	eval_test.go	/^func TestEval(t *testing.T) {$/;"	f
+Var	ast.go	/^type Var string$/;"	t
+binary	ast.go	/^type binary struct {$/;"	t
+call	ast.go	/^type call struct {$/;"	t
+describe	parse.go	/^func (lex *lexer) describe() string {$/;"	f
+eval	ast.go	/^package eval$/;"	p
+eval	check.go	/^package eval$/;"	p
+eval	coverage_test.go	/^package eval$/;"	p
+eval	eval.go	/^package eval$/;"	p
+eval	eval_test.go	/^package eval$/;"	p
+eval	parse.go	/^package eval$/;"	p
+eval	print.go	/^package eval$/;"	p
+lexPanic	parse.go	/^type lexPanic string$/;"	t
+lexer	parse.go	/^type lexer struct {$/;"	t
+literal	ast.go	/^type literal float64$/;"	t
+next	parse.go	/^func (lex *lexer) next()        { lex.token = lex.scan.Scan() }$/;"	f
+numParams	check.go	/^var numParams = map[string]int{"pow": 2, "sin": 1, "sqrt": 1}$/;"	v
+parseBinary	parse.go	/^func parseBinary(lex *lexer, prec1 int) Expr {$/;"	f
+parseExpr	parse.go	/^func parseExpr(lex *lexer) Expr { return parseBinary(lex, 1) }$/;"	f
+parsePrimary	parse.go	/^func parsePrimary(lex *lexer) Expr {$/;"	f
+parseUnary	parse.go	/^func parseUnary(lex *lexer) Expr {$/;"	f
+precedence	parse.go	/^func precedence(op rune) int {$/;"	f
+text	parse.go	/^func (lex *lexer) text() string { return lex.scan.TokenText() }$/;"	f
+unary	ast.go	/^type unary struct {$/;"	t
+write	print.go	/^func write(buf *bytes.Buffer, e Expr) {$/;"	f

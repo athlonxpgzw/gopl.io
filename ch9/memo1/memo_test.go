@@ -27,14 +27,14 @@ func TestConcurrent(t *testing.T) {
 //!+output
 $ go test -v gopl.io/ch9/memo1
 === RUN   Test
-https://golang.org, 175.026418ms, 7537 bytes
-https://godoc.org, 172.686825ms, 6878 bytes
-https://play.golang.org, 115.762377ms, 5767 bytes
+https://www.baidu.com, 175.026418ms, 7537 bytes
+https://www.sina.com.cn, 172.686825ms, 6878 bytes
+https://mirrors.163.com, 115.762377ms, 5767 bytes
 http://gopl.io, 749.887242ms, 2856 bytes
 
-https://golang.org, 721ns, 7537 bytes
-https://godoc.org, 152ns, 6878 bytes
-https://play.golang.org, 205ns, 5767 bytes
+https://www.baidu.com, 721ns, 7537 bytes
+https://www.sina.com.cn, 152ns, 6878 bytes
+https://mirrors.163.com, 205ns, 5767 bytes
 http://gopl.io, 326ns, 2856 bytes
 --- PASS: Test (1.21s)
 PASS

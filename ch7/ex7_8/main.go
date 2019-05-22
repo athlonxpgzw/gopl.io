@@ -72,6 +72,17 @@ func (x byYear) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
 
 //!-yearcode
 
+//!+StateSort
+type StateSort struct {
+	t    []*Track
+	less func(x, y *Track) bool
+}
+
+func (x StateSort) Len() int           { return len(x.t) }
+func (x StateSort) Less(i, j int) bool { return x.less(x.t[i], x.t[j]) }
+func (x StateSort) Swap(i, j int)      { x.t[i], x.t[j] = x.t[j], x.t[i] }
+//!-StateSort
+
 func main() {
 	fmt.Println("byArtist:")
 	sort.Sort(byArtist(tracks))
@@ -85,19 +96,44 @@ func main() {
 	sort.Sort(byYear(tracks))
 	printTracks(tracks)
 
-	fmt.Println("\nCustom:")
+	fmt.Println("\nStateful:")
 	//!+customcall
-	sort.Sort(customSort{tracks, func(x, y *Track) bool {
-		if x.Title != y.Title {
-			return x.Title < y.Title
-		}
-		if x.Year != y.Year {
-			return x.Year < y.Year
-		}
-		if x.Length != y.Length {
-			return x.Length < y.Length
-		}
-		return false
+    recentClicks := make([]string, 5)
+    recentClicks[0] = "Title"
+    recentClicks[1] = "Artist"
+    recentClicks[2] = "Year"
+    recentClicks[3] = "Album"
+    recentClicks[4] = "Length"
+
+	sort.Sort(StateSort{tracks, func(x, y *Track) bool {
+        if (len(recentClicks) == 0) {
+            return x.Title < y.Title
+        }
+        for _, recentClick := range recentClicks {
+            switch recentClick {
+                case "Title":
+                    if (x.Title != y.Title) {
+                        return x.Title < y.Title
+                    }
+                case "Artist":
+                    if (x.Artist != y.Artist) {
+                        return x.Artist < y.Artist
+                    }
+                case "Year":
+                    if (x.Year != y.Year) {
+                        return x.Year < y.Year
+                    }
+                case "Album":
+                    if (x.Album != y.Album) {
+                        return x.Album < y.Album
+                    }
+                case "Length":
+                    if (x.Length != y.Length) {
+                        return x.Length < y.Length
+                    }
+            }
+        }
+        return false
 	}})
 	//!-customcall
 	printTracks(tracks)
@@ -141,27 +177,29 @@ Ready 2 Go  Martin Solveig  Smash              2011  4m24s
 //!-customout
 */
 
-//!+customcode
-type customSort struct {
-	t    []*Track
-	less func(x, y *Track) bool
-}
+////!+customcode
+//type customSort struct {
+//	t    []*Track
+//	less func(x, y *Track) bool
+//}
+//
+//func (x customSort) Len() int           { return len(x.t) }
+//func (x customSort) Less(i, j int) bool { return x.less(x.t[i], x.t[j]) }
+//func (x customSort) Swap(i, j int)      { x.t[i], x.t[j] = x.t[j], x.t[i] }
+//
+//
+//
+////!-customcode
 
-func (x customSort) Len() int           { return len(x.t) }
-func (x customSort) Less(i, j int) bool { return x.less(x.t[i], x.t[j]) }
-func (x customSort) Swap(i, j int)      { x.t[i], x.t[j] = x.t[j], x.t[i] }
-
-//!-customcode
-
-func init() {
-	//!+ints
-	values := []int{3, 1, 4, 1}
-	fmt.Println(sort.IntsAreSorted(values)) // "false"
-	sort.Ints(values)
-	fmt.Println(values)                     // "[1 1 3 4]"
-	fmt.Println(sort.IntsAreSorted(values)) // "true"
-	sort.Sort(sort.Reverse(sort.IntSlice(values)))
-	fmt.Println(values)                     // "[4 3 1 1]"
-	fmt.Println(sort.IntsAreSorted(values)) // "false"
-	//!-ints
-}
+//func init() {
+//	//!+ints
+//	values := []int{3, 1, 4, 1}
+//	fmt.Println(sort.IntsAreSorted(values)) // "false"
+//	sort.Ints(values)
+//	fmt.Println(values)                     // "[1 1 3 4]"
+//	fmt.Println(sort.IntsAreSorted(values)) // "true"
+//	sort.Sort(sort.Reverse(sort.IntSlice(values)))
+//	fmt.Println(values)                     // "[4 3 1 1]"
+//	fmt.Println(sort.IntsAreSorted(values)) // "false"
+//	//!-ints
+//}
